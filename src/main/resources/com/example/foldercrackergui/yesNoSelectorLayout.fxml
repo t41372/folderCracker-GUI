@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="360.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foldercrackergui.yesNoSelectorController">
+   <children>
+      <Label fx:id="messageLabel" alignment="CENTER" text="Display Message" textAlignment="CENTER" wrapText="true" />
+      <HBox alignment="CENTER" prefHeight="77.0" prefWidth="479.0" spacing="20.0">
+         <children>
+            <Button fx:id="yesButton" mnemonicParsing="false" onAction="#yesButtonOnAction" text="Yes" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="noButton" mnemonicParsing="false" onAction="#noButtonOnAction" text="No" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

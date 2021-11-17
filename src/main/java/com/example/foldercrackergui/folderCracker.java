@@ -145,21 +145,22 @@ public class folderCracker
 
                 while(true) { //flow control for user input error handling
 
-                    Scanner sc = new Scanner(System.in);
-                    System.out.println("\nDo you want to rename the current file: \n("
+                    yesNoSelectorController controller = new yesNoSelectorController();
+                    boolean yes = controller.buildWindow("\nDo you want to rename the current file: \n("
                             + currentFile.getAbsolutePath() + ") \nto \"" + possibleNewName + "\" ? (enter y)\n\n" +
                             "or if you want to replace another file (that file is in result folder now) " +
                             "(" + targetLocation.getAbsolutePath() + "\\" + fileName + ")\n" +
                             " with this one? (enter n)" +
                             "\n(Y/N)");
 
-                    String userDecision = sc.nextLine();
-                    if(userDecision.toLowerCase(Locale.ROOT).equals("y"))
+                    //!! Current Problem: We cannot get the y/n data back from the window
+
+                    if(yes)
                     {
                         //make possible name the real name
                         fileName = possibleNewName;
                     }
-                    else if(userDecision.toLowerCase(Locale.ROOT).equals("n"))
+                    else
                     {
                         System.out.println("OK, I'll replace the existing one with the current file.");
                         //default option of move is replace, so no need to do anything here
