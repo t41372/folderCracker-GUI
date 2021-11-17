@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static Stage openStage;
-    public static Scene yesNoSelectorScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,9 +19,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         openStage = stage;
 
-        yesNoSelectorScene = new Scene(
-                (new FXMLLoader(Main.class.getResource("yesNoSelectorLayout.fxml"))).load()
-        );
 
         stage.setTitle("Folder Cracker");
         stage.setScene(scene);

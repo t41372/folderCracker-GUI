@@ -20,6 +20,12 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class folderCracker
 {
+    //
+
+    public static mainMenuController motherWindow;
+
+
+
     /**
      * This main function drive the CLI version of the app for debug purposes.
      * @param args
@@ -50,7 +56,7 @@ public class folderCracker
 
         System.out.println("Thanks for your location! Now run the program.");
 
-        destroyAllFoldersMain(targetLocation);
+        destroyAllFoldersMain(targetLocation, motherWindow);
 
     }
 
@@ -61,7 +67,10 @@ public class folderCracker
      * @param destroyTargetsLocation
      * @throws IOException
      */
-    public static void destroyAllFoldersMain(File destroyTargetsLocation) throws IOException {
+    public static void destroyAllFoldersMain(File destroyTargetsLocation, mainMenuController motherWindowParam)
+            throws IOException {
+        motherWindow = motherWindowParam;
+
         Stack<File> allFiles = getEveryFilesInFolder(destroyTargetsLocation);
 
         //dev print the stack
@@ -143,45 +152,42 @@ public class folderCracker
 
                 System.out.println("Opes, the file named \"" + fileName + "\" already exist.");
 
-                while(true) { //flow control for user input error handling
-
-                    yesNoSelectorController controller = new yesNoSelectorController();
-                    boolean yes = controller.buildWindow("\nDo you want to rename the current file: \n("
-                            + currentFile.getAbsolutePath() + ") \nto \"" + possibleNewName + "\" ? (enter y)\n\n" +
-                            "or if you want to replace another file (that file is in result folder now) " +
-                            "(" + targetLocation.getAbsolutePath() + "\\" + fileName + ")\n" +
-                            " with this one? (enter n)" +
-                            "\n(Y/N)");
-
-                    //!! Current Problem: We cannot get the y/n data back from the window
-
-                    if(yes)
-                    {
-                        //make possible name the real name
-                        fileName = possibleNewName;
-                    }
-                    else
-                    {
-                        System.out.println("OK, I'll replace the existing one with the current file.");
-                        //default option of move is replace, so no need to do anything here
-                    }
-
-                    System.out.println("\n-----------------------");
-                    break;
-                }//true loop ends
+                String message = "Do you want to rename the current file: \n\""
+                        + currentFile.getName() + "\" in (" + currentFile.getAbsolutePath() + ")" +
+                        "\nto\n \"" + possibleNewName + "\" ?\n\n" +
+                        "or replace another file (the file currently in result folder now, location: "
+                        + targetLocation.getAbsolutePath() + "\\" + fileName + ")\n" +
+                        " with this one?\n\n";
 
 
+                boolean yes = motherWindow.invokeYesNoSelectorWindow(fileName, possibleNewName, message);
 
-            } else {
-                nameList.put(fileName, 1);
 
-                // A never appeared name situation
-                Path targetPath = //get the path after moving the file
-                        new File(targetLocation.getAbsolutePath() + "\\" + fileName).toPath();
+                if(yes)
+                {
+                    System.out.println("OK, I'll name this file to " + possibleNewName);
+                    fileName = possibleNewName;
+                }
+                else
+                {
+                    System.out.println("OK, I'll replace the existing one with the current file.");
+                    //default option of move is replace, so no need to do anything here
+                }
 
-                //really move it
-                Files.move(currentFile.toPath(), targetPath, REPLACE_EXISTING);
+                System.out.println("\n-----------------------");
+
             }
+            //if the current fileName does not have conflict with existing files
+            //or the user have selected a way to resolve the conflict
+            nameList.put(fileName, 1);
+
+            // A never appeared name situation
+            Path targetPath = //get the path after moving the file
+                    new File(targetLocation.getAbsolutePath() + "\\" + fileName).toPath();
+
+            //really move it
+            Files.move(currentFile.toPath(), targetPath, REPLACE_EXISTING);
+
         }
 
 

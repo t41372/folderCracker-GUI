@@ -2,8 +2,8 @@ package com.example.foldercrackergui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.Region;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -11,6 +11,7 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class mainMenuController {
 
@@ -56,6 +57,30 @@ public class mainMenuController {
     }
     @FXML
     protected void executeButtonOnAction(ActionEvent actionEvent) throws IOException {
-        folderCracker.destroyAllFoldersMain(selectedDirectory);
+        folderCracker.destroyAllFoldersMain(selectedDirectory, this);
+    }
+
+
+    public boolean invokeYesNoSelectorWindow(String fileName, String possibleName, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conflict");
+        alert.setHeaderText("Opes, the file named \"" + fileName + "\" already exist.");
+        alert.setContentText(message);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+
+        ButtonType yesButton = new ButtonType("Rename to \"" + possibleName + "\"");
+        ButtonType noButton = new ButtonType("Replace with this file");
+
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) return true;
+        else if (result.get() == noButton) return false;
+        else {
+            System.out.println("WFT??? Which button did the user pressed ?!!");
+            return false;
+        }
+
     }
 }
