@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -20,11 +19,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class folderCracker
 {
-    //
-
+    //Store the instance of the main window, because we need to invoke alert window from its controller class.
     public static mainMenuController motherWindow;
-
-
 
     /**
      * This main function drive the CLI version of the app for debug purposes.
@@ -145,7 +141,7 @@ public class folderCracker
             if(nameList.containsKey(fileName))
             {
                 int appearTimes = nameList.get(fileName) + 1;
-                String possibleNewName = "(" + appearTimes + ") " + fileName;
+                String possibleNewName = putTextBetweenNameAndExtension(fileName, " (" + appearTimes + ")");
                 nameList.put(fileName, appearTimes);
 
                 System.out.println("\n-----------------------");
@@ -154,10 +150,10 @@ public class folderCracker
 
                 String message = "Do you want to rename the current file: \n\""
                         + currentFile.getName() + "\" in (" + currentFile.getAbsolutePath() + ")" +
-                        "\nto\n \"" + possibleNewName + "\" ?\n\n" +
-                        "or replace another file (the file currently in result folder now, location: "
+                        "\nto\n\"" + possibleNewName + "\" ?\n\n" +
+                        "Or replace another file (the file currently in result folder now, location: "
                         + targetLocation.getAbsolutePath() + "\\" + fileName + ")\n" +
-                        " with this one?\n\n";
+                        " with this one?\n(" + currentFile.getAbsolutePath() + ")\n\n\n";
 
 
                 boolean yes = motherWindow.invokeYesNoSelectorWindow(fileName, possibleNewName, message);
@@ -240,6 +236,21 @@ public class folderCracker
 
         return currentFolderCanBeDeleted;
 
+    }
+
+    /**
+     * Insert a text after the file name, before the file extension. For example, insert " (1)" into "index.java" would
+     * return "index (1).java". If fileName does not have an extension, the insertText will be appended after fileName
+     * @param fileName The name of the file
+     * @param insertText The text you want to insert between the file name and its extension
+     * @return the result
+     */
+    private static String putTextBetweenNameAndExtension(String fileName, String insertText)
+    {
+        int indexOfExtension = fileName.lastIndexOf(".");
+        return (indexOfExtension != -1) ?
+                fileName.substring(0, indexOfExtension) + insertText + fileName.substring(indexOfExtension) :
+                fileName + insertText;
     }
 
 
