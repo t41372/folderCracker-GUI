@@ -58,6 +58,7 @@ public class mainMenuController {
     @FXML
     protected void executeButtonOnAction(ActionEvent actionEvent) throws IOException {
         folderCracker.destroyAllFoldersMain(selectedDirectory, this);
+        invokeCompleteWindow();
     }
 
 
@@ -82,5 +83,13 @@ public class mainMenuController {
             return false;
         }
 
+    }
+
+    public void invokeCompleteWindow() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Action Complete");
+        alert.setHeaderText(null);
+        alert.setContentText("Operation Complete!");
+        alert.showAndWait();
     }
 }
