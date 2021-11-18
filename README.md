@@ -1,8 +1,10 @@
 # folderCracker-GUI
 
 ![Folder Cracker Image](https://user-images.githubusercontent.com/36402030/142334220-e5ad0937-51a0-4ea4-8241-58c520ef1a87.png)
-<a align="center" src="https://github.com/t41372/folderCracker-GUI/releases/download/v1.0/folderCracker-GUI-1.0.jar">
-<img src="https://img.shields.io/github/downloads/t41372/folderCracker-GUI/v1.0/total" alt="image" postition="center"/>
+<a href="https://github.com/t41372/folderCracker-GUI/releases/download/v1.0/folderCracker-GUI-1.0.jar">
+  <p align="center">
+    <img src="https://img.shields.io/github/downloads/t41372/folderCracker-GUI/v1.0/total" alt="image" postition="center"/>
+  </p>
 </a>
 This app helps you delete all the subfolders under a directory and get all the files out.
 
