@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc8045f0-f20b-4e2e-9f3e-d510750916fa" name="Changes" comment="Update pom for building jar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/mainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/mainMenuController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +97,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update pom for building jar" />
