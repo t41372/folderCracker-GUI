@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Stack;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
@@ -201,10 +200,7 @@ public class folderCracker
             else
                 currentFolderCanBeDeleted = false;
         }
-
-
         return currentFolderCanBeDeleted;
-
     }
 
     /**
