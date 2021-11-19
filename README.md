@@ -13,6 +13,9 @@ For example, you might have a folder with tons of subfolders. Some of the subfol
 ## Screenshots
 <img src="https://user-images.githubusercontent.com/36402030/142334782-4c4530eb-1eb6-4643-9476-f1f1168a8c6c.png" alt="image" width="420" height="400" />
 
+## Requirements
+- Java 11 or higher
+
 
 ## Some info
 Platform:
