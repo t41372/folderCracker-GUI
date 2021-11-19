@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc8045f0-f20b-4e2e-9f3e-d510750916fa" name="Changes" comment="Update pom for building jar">
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/folderCracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/folderCracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/mainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foldercrackergui/mainMenuController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +50,22 @@
       <recent name="C:\Users\Tim Chiu\OneDrive\coding\2021\Projects\folderCracker-GUI\src\main\java\com\example\foldercrackergui" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foldercrackergui.Main" />
+      <module name="folderCracker-GUI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foldercrackergui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="folderCracker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foldercrackergui.folderCracker" />
       <module name="folderCracker-GUI" />
       <extension name="coverage">
         <pattern>
@@ -64,6 +80,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.folderCracker" />
       </list>
     </recent_temporary>
   </component>

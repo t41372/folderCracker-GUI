@@ -23,71 +23,37 @@ public class folderCracker
     public static mainMenuController motherWindow;
 
     /**
-     * This main function drive the CLI version of the app for debug purposes.
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        File targetLocation;
-
-        if(args != null && args.length > 0)
-        {
-            targetLocation = new File(args[0]);
-        }
-        else{
-            System.out.println("Folder Cracker will help you DESTROY your folder, " +
-                    "and get everything inside the folder out");
-            System.out.println("Please give me a location, so I can break *ALL of the folder in that location! ");
-            Scanner sc = new Scanner(System.in);
-            targetLocation = new File(sc.nextLine());
-        }
-
-        if(!targetLocation.isDirectory())
-        {
-            System.out.println("Opes, This is not a valid folder, isn't it?\nReenter a valid folder please?");
-            main(new String[0]);
-        }
-
-
-
-        System.out.println("Thanks for your location! Now run the program.");
-
-        destroyAllFoldersMain(targetLocation, motherWindow);
-
-    }
-
-    /**
-     * Driver function.
+     * Driver Function.
      * Delete all the folder under the given directory and move all the files out into a "result" folder.
      * The directory has to be a folder.
-     * @param destroyTargetsLocation
+     * @param selectedDirectory directory that all the sub folders will be deleted
      * @throws IOException
      */
-    public static void destroyAllFoldersMain(File destroyTargetsLocation, mainMenuController motherWindowParam)
+    public static void destroyAllFoldersMain(File selectedDirectory, mainMenuController motherWindowParam)
             throws IOException {
         motherWindow = motherWindowParam;
 
-        Stack<File> allFiles = getEveryFilesInFolder(destroyTargetsLocation);
+        Stack<File> allFiles = getEveryFilesInFolder(selectedDirectory);
 
-        //dev print the stack
-        //while(!allFiles.isEmpty())
-        //    System.out.println(allFiles.pop());
+        File resultFolder = new File(selectedDirectory + "//result//");
+        if(!resultFolder.isDirectory())
+            resultFolder.mkdir();
 
-        File targetLocation = new File(destroyTargetsLocation + "//result//");
-        if(!targetLocation.isDirectory())
-            targetLocation.mkdir();
-
-        moveFilesTo(allFiles, targetLocation);
+        moveFilesTo(allFiles, resultFolder);
 
         System.out.println("Those files have been moved!");
 
-        deleteEmptyFolder(destroyTargetsLocation);
+        deleteEmptyFolder(selectedDirectory);
 
         System.out.println("Those folders have been deleted!");
 
-
     }
 
+    /** Get every file in a folder. Files in the sub folders are included.
+     *
+     * @param folderPath
+     * @return a stack of the File instance of all the files in the folder.
+     */
     private static Stack<File> getEveryFilesInFolder(File folderPath)
     {
 
@@ -118,14 +84,18 @@ public class folderCracker
                 //now the all file stack should contain all the files in the sub folder
             }
         }
-
-
-
         return allFiles;
-
-
     }
 
+    /** Move a stack of files to a target location. Will invoke a YesNoSelector window (GUI) if there
+     * are two identical files to get user's opinion on dealing with it. To invoke the GUI, there must be an instance of
+     * mainMenuController in this file, which is motherWindow (static).
+     *
+     * @param fileStack a stack of files that are going to be moved to target location
+     * @param targetLocation the target location that will have all the files in fileStack after
+     *                       the use of this function
+     * @throws IOException
+     */
     public static void moveFilesTo(Stack<File> fileStack, File targetLocation) throws IOException {
         File currentFile;
 
@@ -156,22 +126,21 @@ public class folderCracker
                         " with this one?\n(" + currentFile.getAbsolutePath() + ")\n\n\n";
 
 
-                boolean yes = motherWindow.invokeYesNoSelectorWindow(fileName, possibleNewName, message);
-
-
+                //
+                boolean yes = motherWindow.invokeYesNoSelectorWindow("Conflict",
+                        "Opes, the file named \"" + fileName + "\" already exist.",
+                        "Rename to \"" + possibleNewName + "\"",
+                        "Replace with this file", message);
                 if(yes)
                 {
                     System.out.println("OK, I'll name this file to " + possibleNewName);
                     fileName = possibleNewName;
                 }
                 else
-                {
                     System.out.println("OK, I'll replace the existing one with the current file.");
                     //default option of move is replace, so no need to do anything here
-                }
 
                 System.out.println("\n-----------------------");
-
             }
             //if the current fileName does not have conflict with existing files
             //or the user have selected a way to resolve the conflict
@@ -251,42 +220,6 @@ public class folderCracker
         return (indexOfExtension != -1) ?
                 fileName.substring(0, indexOfExtension) + insertText + fileName.substring(indexOfExtension) :
                 fileName + insertText;
-    }
-
-
-
-
-    /**Get the list of all the files/folders under the targeted directory. <br/>
-     * Return Null if folderPath is not valid or Empty.
-     *
-     * @param folderPath the target directory which I will find things in.
-     * @return Everything under the target directory. In the form of File[]. Return Null if its Empty or Invalid
-     */
-    public static File[] getDirectoriesInAFolder(File folderPath)
-    {
-        if(!folderPath.isDirectory()) {
-            System.out.println("Shit, this is not even a folder");
-            return null;
-        }
-
-        //get all the names of folders/files under the directory
-        String[] fileNames = folderPath.list();
-
-        if(fileNames == null) //if the folder is empty
-        {
-            return null;
-        }
-
-
-        //convert those String file names into a File[]
-        File[] result = new File[fileNames.length];
-
-        for(int index = 0; index < fileNames.length; index ++)
-        {
-            result[index] = new File(folderPath.getAbsolutePath() + "\\" + fileNames[index]);
-        }
-
-        return result;
     }
 
 

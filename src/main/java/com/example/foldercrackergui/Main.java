@@ -1,3 +1,7 @@
+/** Main function of the application. Invoke the GUI.
+ *
+ * Yi-Ting Chiu, 2021. 11. 19.
+ */
 package com.example.foldercrackergui;
 
 import javafx.application.Application;
@@ -9,7 +13,7 @@ import java.io.IOException;
 
 
 public class Main extends Application {
-
+    //store an instance after the creation of the main window for convenience.
     public static Stage openStage;
 
     @Override
@@ -18,7 +22,6 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("mainMenuLayout.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         openStage = stage;
-
 
         stage.setTitle("Folder Cracker");
         stage.setScene(scene);
