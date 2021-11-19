@@ -35,3 +35,6 @@ hs_err_pid*
 # IntelliJ
 out/
 .idea/workspace.xml
+
+# Maven
+target/
